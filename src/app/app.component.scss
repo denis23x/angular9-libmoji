@@ -1,0 +1,24 @@
+
+$preview-width: 300px;
+$preview-height: 440px;
+
+.preview {
+  position: sticky;
+  top: 3rem;
+  &.loader {
+    img {
+      opacity: 0.25;
+    }
+  }
+  img {
+    width: $preview-width;
+    height: $preview-height;
+    transition: all 0.2s;
+  }
+  .overlay {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+  }
+}
