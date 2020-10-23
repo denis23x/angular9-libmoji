@@ -3,24 +3,28 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { InviteComponent } from './invite/invite.component';
 import { ControlComponent } from './control/control.component';
+import { AuthGuard } from '../core';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    redirectTo: '/team/control',
     pathMatch: 'full'
   },
   {
     path: 'create',
-    component: CreateComponent
+    component: CreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'invite',
-    component: InviteComponent
+    component: InviteComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'control',
-    component: ControlComponent
+    component: ControlComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

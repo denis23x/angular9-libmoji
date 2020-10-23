@@ -18,7 +18,7 @@ export class ApiService {
   ) { }
 
   formatErrors(response: any) {
-    this.notificationService.error('Server error', response.error.error);
+    this.notificationService.error('Ошибка сервера', response.error.error);
     return throwError(response.error);
   }
 
@@ -26,8 +26,8 @@ export class ApiService {
     return this.http.get(this.api + path, { params }).pipe(catchError(error => this.formatErrors(error)));
   }
 
-  put(path: string, body: object): Observable<any> {
-    return this.http.put(this.api + path, JSON.stringify(body)).pipe(catchError(error => this.formatErrors(error)));
+  patch(path: string, body: object): Observable<any> {
+    return this.http.patch(this.api + path, JSON.stringify(body)).pipe(catchError(error => this.formatErrors(error)));
   }
 
   post(path: string, body: object): Observable<any> {

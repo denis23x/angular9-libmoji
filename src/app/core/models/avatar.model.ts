@@ -1,4 +1,3 @@
-
 export interface Gender {
   [index: number]: string | number;
 }

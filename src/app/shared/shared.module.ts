@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import {
+  AppAuthedDirective,
   AppVariableDirective
 } from './directives';
 
@@ -17,6 +18,7 @@ import {
     RouterModule
   ],
   declarations: [
+    AppAuthedDirective,
     AppVariableDirective
   ],
   exports: [
@@ -25,6 +27,7 @@ import {
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    AppAuthedDirective,
     AppVariableDirective
   ]
 })

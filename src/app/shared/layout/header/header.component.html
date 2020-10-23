@@ -3,8 +3,12 @@
     <div class="col-auto mr-auto">
       <h4 class="p-2 mb-0" [routerLink]="['/']">Cooplay</h4>
     </div>
-    <div class="col-auto ml-auto">
-      <button class="btn btn-outline-info">Войти</button>
+    <div class="col-auto ml-auto" *appAuthed="false">
+      <a class="btn btn-outline-info" [href]="apiUrl + '/login/google'">Войти</a>
+    </div>
+    <div class="col-auto ml-auto" *appAuthed="true">
+      <a class="btn btn-outline-info mr-3" [routerLink]="['/team/control']">Моя команда</a>
+      <button class="btn btn-outline-danger" (click)="onLogout()">Выход</button>
     </div>
   </div>
 </section>

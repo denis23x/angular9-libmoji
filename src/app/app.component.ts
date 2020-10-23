@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { fadeRouting } from './app-animations';
 
+import { UserService } from './core/services';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,10 +10,11 @@ import { fadeRouting } from './app-animations';
 })
 export class AppComponent implements OnInit {
   constructor(
-    // private userService: UserService
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    // this.userService.populate();
+    this.userService.populate();
   }
+
 }

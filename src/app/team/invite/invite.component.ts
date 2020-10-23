@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { SnackbarService } from '../../core';
+import { SnackbarService, TeamService } from '../../core';
 
 @Component({
   selector: 'app-invite',
@@ -17,6 +17,7 @@ export class InviteComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private snackbarService: SnackbarService,
+    private teamService: TeamService,
     private router: Router
   ) {
     this.inviteForm = this.fb.group({
@@ -43,8 +44,14 @@ export class InviteComponent implements OnInit {
   }
 
   onSend() {
-    this.snackbarService.success('', 'Приглашение отправлены!');
-    this.router.navigate(['/team/control']);
+    const body = this.inviteForm.get('inviteMembers').value.map(e => e.email);
+
+    this.teamService.setInvite(body).subscribe((response) => {
+      console.log(response);
+    });
+
+    // this.snackbarService.success('', 'Приглашение отправлены!');
+    // this.router.navigate(['/team/control']);
   }
 
 }
