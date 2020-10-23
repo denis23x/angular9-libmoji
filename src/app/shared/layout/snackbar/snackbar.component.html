@@ -1,0 +1,12 @@
+<div class="snackbar p-3" *ngIf="snackbar.length">
+  <div
+    class="alert"
+    [ngClass]="[snack.class]"
+    role="alert"
+    *ngFor="let snack of snackbar">
+    <span class="alert-heading display-4">
+      <small>{{snack.title}}</small>
+    </span>
+    <p class="mb-0">{{snack.message}}</p>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<main class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <span class="d-block display-4 w-100 text-center">
+        <small class="text-muted">Участники</small>
+      </span>
+      <span class="d-block text-center text-muted">Отправьте приглашение участникам команды</span>
+      <div class="row justify-content-center my-5">
+        <div class="col-6 align-self-center">
+          <form [formGroup]="inviteForm">
+            <fieldset
+              class="form-group d-flex"
+              formArrayName="inviteMembers"
+              *ngFor="let email of inviteForm.get('inviteMembers')['controls']; let i = index; let l = last;">
+              <label
+                class="w-100 mb-0 mr-3"
+                for="email"
+                [formGroupName]="i"
+                [class.text-danger]="email.invalid && email.touched">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  [class.is-invalid]="email.invalid && email.touched"
+                  formControlName="email"
+                  aria-describedby="emailHelp">
+              </label>
+              <button
+                *ngIf="!l"
+                type="button"
+                (click)="onRemoveEmail(i)"
+                class="btn btn-outline-danger">-</button>
+              <button
+                *ngIf="l"
+                type="button"
+                (click)="onAddEmail()"
+                class="btn btn-outline-success">+</button>
+            </fieldset>
+            <small id="emailHelp" class="form-text text-muted my-2 mx-1">Email участников</small>
+          </form>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          type="button"
+          (click)="onSend()"
+          [disabled]="inviteForm.invalid"
+          class="btn btn-success">Отправить
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

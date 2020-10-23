@@ -1,0 +1,70 @@
+<main class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <span class="d-block display-4 w-100 text-center">
+        <small class="text-muted">Создать команду</small>
+      </span>
+      <span class="d-block text-center text-muted">Для начала создайте лидера команды</span>
+      <div class="row justify-content-center my-5">
+        <div class="col-4 align-self-center">
+          <form [formGroup]="leaderForm" (ngSubmit)="onSubmitForm()">
+            <fieldset class="form-group" *appVariable="leaderForm.get('name') as name">
+              <label for="name" [class.text-danger]="name.invalid && name.touched">Имя</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                [class.is-invalid]="name.invalid && name.touched"
+                formControlName="name"
+                aria-describedby="nameHelp">
+              <small id="emailHelp" class="form-text text-muted my-2 mx-1">От 2 до 20 символов</small>
+            </fieldset>
+            <fieldset class="form-group">
+              <span>Пол</span>
+              <div class="d-flex my-2">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="male"
+                    formControlName="gender"
+                    [value]="0">
+                  <label class="form-check-label" for="male">Мужской</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="female"
+                    formControlName="gender"
+                    [value]="1">
+                  <label class="form-check-label" for="female">Женский</label>
+                </div>
+              </div>
+            </fieldset>
+            <hr>
+            <button type="submit" class="btn btn-outline-info" [disabled]="loading">Сгенерировать</button>
+          </form>
+        </div>
+        <div class="col-6" [class.loading]="loading">
+          <img class="d-block mx-auto" [src]="preview" (load)="loading = false" alt="name">
+          <div class="overlay" *ngIf="loading">
+            <div class="spinner-grow" role="status">
+              <span class="sr-only">Загрузка...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="onContinue()"
+          [disabled]="leaderForm.invalid">Продолжить
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,21 @@
+
+$preview-width: 250px;
+$preview-height: 390px;
+
+.loading {
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  img {
+    opacity: 0.25;
+  }
+}
+
+img {
+  width: $preview-width;
+  height: $preview-height;
+  transition: opacity 0.2s;
+}
